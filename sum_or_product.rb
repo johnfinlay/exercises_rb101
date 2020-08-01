@@ -12,4 +12,6 @@ if calc.downcase == 's'
 elsif calc.downcase == 'p'
   (2..num).each { |int| result *= int }
   puts "The product of the integers between 1 and #{num} is #{result}."
+else
+  puts "Invalid operation."
 end
