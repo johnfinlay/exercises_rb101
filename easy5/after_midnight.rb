@@ -31,8 +31,6 @@ require 'pry'
 def time_of_day(num)
   hours, minutes = (num % 1440).divmod(60)
   hours = hours < 10 ? ('0' + hours.to_s) : hours.to_s
-  # minutes = minutes < 10 ? ('0' + minutes.to_s) : minutes.to_s
-  # "#{hours}:#{minutes}"
   format('%02d:%02d', hours, minutes)
 end
 
