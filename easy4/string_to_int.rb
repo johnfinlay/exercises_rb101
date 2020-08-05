@@ -5,11 +5,14 @@ DIGITS = {
 }
 
 def string_to_integer(str)
+  arr = str.chars
+  sign = arr.shift if %w(- +).include?(arr[0])
+
   result = 0
-  str.chars.each do |digit|
+  arr.each do |digit|
     result = 10 * result + DIGITS[digit.upcase]
   end
-  result
+  sign == '-' ? (result * -1) : result
 end
 
 def hex_to_int(str)
@@ -23,3 +26,6 @@ end
 p string_to_integer('4321') == 4321
 p string_to_integer('570') == 570
 p hex_to_int('4D9f') == 19871
+p string_to_integer('4321') == 4321
+p string_to_integer('-570') == -570
+p string_to_integer('+100') == 100
