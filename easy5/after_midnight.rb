@@ -28,16 +28,40 @@
 =end
 require 'pry'
 
+DIGITS = {
+    '0' => 0, '1' => 1, '2' => 2, '3' => 3, '4' => 4,
+    '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9
+  }
+
 def time_of_day(num)
   hours, minutes = (num % 1440).divmod(60)
   hours = hours < 10 ? ('0' + hours.to_s) : hours.to_s
   format('%02d:%02d', hours, minutes)
 end
 
-p time_of_day(0) == "00:00"
-p time_of_day(-3) == "23:57"
-p time_of_day(35) == "00:35"
-p time_of_day(-1437) == "00:03"
-p time_of_day(3000) == "02:00"
-p time_of_day(800) == "13:20"
-p time_of_day(-4231) == "01:29"
+def after_midnight(time)
+  return 0 if ['00:00', '24:00'].include?(time)
+
+  (DIGITS[time[0]] * 10 + DIGITS[time[1]]) * 60 + (DIGITS[time[3]] * 10 + DIGITS[time[4]])
+end
+
+def before_midnight(time)
+  return 0 if ['00:00', '24:00'].include?(time)
+
+  1440 - after_midnight(time)
+end
+
+# p time_of_day(0) == "00:00"
+# p time_of_day(-3) == "23:57"
+# p time_of_day(35) == "00:35"
+# p time_of_day(-1437) == "00:03"
+# p time_of_day(3000) == "02:00"
+# p time_of_day(800) == "13:20"
+# p time_of_day(-4231) == "01:29"
+
+p after_midnight('00:00') == 0
+p before_midnight('00:00') == 0
+p after_midnight('12:34') == 754
+p before_midnight('12:34') == 686
+p after_midnight('24:00') == 0
+p before_midnight('24:00') == 0
