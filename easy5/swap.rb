@@ -1,15 +1,12 @@
 require 'pry'
 
+def swap_first_last_charracters(word)
+  word[0], word[-1] = word[-1], word[0]
+  word
+end
+
 def swap(str)
-  words = str.split
-  new_words = words.map do |word|
-    first = word[0]
-    last = word[-1]
-    word[0] = last
-    word[-1] = first
-    word
-  end
-  new_words.join(' ')
+  str.split.map { |word| swap_first_last_charracters(word) }.join(' ')
 end
 
 p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
