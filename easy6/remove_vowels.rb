@@ -21,11 +21,7 @@
 require 'pry'
 
 def remove_vowels(arr)
-  arr.map do |str|
-    str.chars.select do |chr|
-      chr unless %w(a e i o u A E I O U).include?(chr)
-    end.join
-  end
+  arr.map { |str| str.delete('aeiouAEIOU') }
 end
 
 p remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)
