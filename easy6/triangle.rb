@@ -1,5 +1,5 @@
 def triangle(num)
-  (num + 1).times { |i| puts "#{' ' * (num - i)}#{'*' * i}"}
+  (num + 1).times { |i| puts "#{' ' * i}#{'*' * (num - i)}"}
 end
 
 triangle(5)
