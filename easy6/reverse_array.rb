@@ -29,20 +29,37 @@ def reverse!(arr)
   arr
 end
 
-list = [1,2,3,4]
-result = reverse!(list)
-p result == [4, 3, 2, 1]
-p list == [4, 3, 2, 1]
-p list.object_id == result.object_id
+def reverse(arr)
+  result = []
+  arr.each { |element| result.unshift(element) }
+  result
+end
 
-list = %w(a b e d c)
-reverse!(list) == ["c", "d", "e", "b", "a"]
-p list == ["c", "d", "e", "b", "a"]
+# list = [1,2,3,4]
+# result = reverse!(list)
+# p result == [4, 3, 2, 1]
+# p list == [4, 3, 2, 1]
+# p list.object_id == result.object_id
 
-list = ['abc']
-reverse!(list) == ["abc"]
-p list == ["abc"]
+# list = %w(a b e d c)
+# reverse!(list) == ["c", "d", "e", "b", "a"]
+# p list == ["c", "d", "e", "b", "a"]
 
-list = []
-reverse!(list) == []
-p list == []
+# list = ['abc']
+# reverse!(list) == ["abc"]
+# p list == ["abc"]
+
+# list = []
+# reverse!(list) == []
+# p list == []
+
+p reverse([1,2,3,4]) == [4,3,2,1]          # => true
+p reverse(%w(a b e d c)) == %w(c d e b a)  # => true
+p reverse(['abc']) == ['abc']              # => true
+p reverse([]) == []                        # => true
+
+list = [1, 3, 2]                      # => [1, 3, 2]
+new_list = reverse(list)              # => [2, 3, 1]
+p list.object_id != new_list.object_id  # => true
+p list == [1, 3, 2]                     # => true
+p new_list == [2, 3, 1]                 # => true
