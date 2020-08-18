@@ -30,9 +30,7 @@ def reverse!(arr)
 end
 
 def reverse(arr)
-  result = []
-  arr.each { |element| result.unshift(element) }
-  result
+  arr.each_with_object([]) { |element, result| result.unshift(element) }
 end
 
 # list = [1,2,3,4]
