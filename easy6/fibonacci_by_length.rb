@@ -23,7 +23,7 @@
 
 def find_fibonacci_index_by_length(num)
   arr = [1, 1]
-  arr << arr[-1] + arr[-2] until arr[-1].to_s.length == num
+  arr << (arr[-1] + arr[-2]) until arr[-1].to_s.length >= num
   arr.size
 end
 
