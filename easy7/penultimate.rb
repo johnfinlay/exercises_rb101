@@ -4,9 +4,7 @@ end
 
 def middle_word(str)
   words = str.split
-  return '' if words.empty? || words.count.even?
-
-  words[(words.count / 2)]
+  words.count.even? ? '' : words[(words.count / 2)]
 end
 
 # p penultimate('last word') == 'last'
