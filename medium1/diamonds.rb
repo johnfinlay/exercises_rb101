@@ -42,6 +42,8 @@ def diamond(num)
   end
 end
 
+# Further Exploration
+
 def empty_diamond(num)
   num.times do |count|
     print_row(((num - count) / 2), count, false) if count.odd?
