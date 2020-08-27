@@ -21,27 +21,47 @@
 
     5. Begin coding
 =end
+require 'pry'
+
+def print_row(indentation, stars, fill = true)
+  if fill || stars <= 2
+    puts "#{' ' * indentation}#{'*' * stars}"
+  else
+    puts "#{' ' * indentation}*#{' ' * (stars - 2)}*"
+  end
+end
 
 def diamond(num)
   num.times do |count|
-    puts "#{' ' * ((num - count) / 2)}#{'*' * count}" if count.odd?
+    print_row(((num - count) / 2), count) if count.odd?
   end
   count = num
   until count.zero?
-    puts "#{' ' * ((num - count) / 2)}#{'*' * count}" if count.odd?
+    print_row(((num - count) / 2), count) if count.odd?
     count -= 1
   end
 end
 
-diamond(1)
+def empty_diamond(num)
+  num.times do |count|
+    print_row(((num - count) / 2), count, false) if count.odd?
+  end
+  count = num
+  until count.zero?
+    print_row(((num - count) / 2), count, false) if count.odd?
+    count -= 1
+  end
+end
+
+empty_diamond(1)
 
 # *
-diamond(3)
+empty_diamond(3)
 
 #  *
 # ***
 #  *
-diamond(9)
+empty_diamond(9)
 
 #     *
 #    ***
