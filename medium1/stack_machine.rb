@@ -17,49 +17,75 @@ def minilang(str)
   commands.each do |command|
     case command
     when 'PUSH' then stack << register
-    when 'ADD' then register += stack.pop
-    when 'SUB' then register -= stack.pop
-    when 'MULT' then register *= stack.pop
-    when 'DIV' then register /= stack.pop
-    when 'MOD' then register %= stack.pop
-    when 'POP' then register = stack.pop
+    when 'ADD'
+      return 'Error: Empty Stack' if stack.empty?
+
+      register += stack.pop
+    when 'SUB'
+      return 'Error: Empty Stack' if stack.empty?
+
+      register -= stack.pop
+    when 'MULT' 
+      return 'Error: Empty Stack' if stack.empty?
+
+      register *= stack.pop
+    when 'DIV' 
+      return 'Error: Empty Stack' if stack.empty?
+
+      register /= stack.pop
+    when 'MOD' 
+      return 'Error: Empty Stack' if stack.empty?
+      
+      register %= stack.pop
+    when 'POP' 
+      return '' if stack.empty?
+      
+      register = stack.pop
     when 'PRINT' then puts register
-    else register = command.to_i
+    when command.to_i.to_s then register = command.to_i
+    else return "Invalid Command #{command}"
     end
   end
+  return nil
 end
 
-minilang('PRINT')
+p minilang('PRINT')
 # 0
 
-minilang('5 PUSH 3 MULT PRINT')
+p minilang('5 PUSH 3 MULT PRINT')
 # 15
 
-minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+p minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
 # 5
 # 3
 # 8
 
-minilang('5 PUSH POP PRINT')
+p minilang('5 PUSH POP PRINT')
 # 5
 
-minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+p minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
 # 5
 # 10
 # 4
 # 7
 
-minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+p minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
 # 6
 
-minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+p minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
 # 12
 
-minilang('-3 PUSH 5 SUB PRINT')
+p minilang('-3 PUSH 5 SUB PRINT')
 # 8
 
-minilang('6 PUSH')
+p minilang('6 PUSH')
 # (nothing printed; no PRINT commands)
 
-minilang('3 PUSH 5 MOD PUSH 7 PUSH 4 PUSH 5 MULT PUSH 3 ADD SUB DIV PRINT')
+p minilang('3 PUSH 5 MOD PUSH 7 PUSH 4 PUSH 5 MULT PUSH 3 ADD SUB DIV PRINT')
 # 8
+
+p minilang('FOO')
+# Invalid Command
+
+p minilang('ADD ADD ADD ADD')
+# empty stack
