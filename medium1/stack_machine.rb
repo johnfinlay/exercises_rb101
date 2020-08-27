@@ -60,3 +60,6 @@ minilang('-3 PUSH 5 SUB PRINT')
 
 minilang('6 PUSH')
 # (nothing printed; no PRINT commands)
+
+minilang('3 PUSH 5 MOD PUSH 7 PUSH 4 PUSH 5 MULT PUSH 3 ADD SUB DIV PRINT')
+# 8
