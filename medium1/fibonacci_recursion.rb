@@ -1,7 +1,7 @@
-def fibonacci(num)
-  return num if num < 2
+def fibonacci(nth)
+  return 1 if nth <= 2
 
-  fibonacci(num - 1) + fibonacci(num - 2)
+  fibonacci(nth - 1) + fibonacci(nth - 2)
 end
 
 p fibonacci(1) == 1
