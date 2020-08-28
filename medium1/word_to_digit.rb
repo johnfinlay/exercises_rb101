@@ -19,6 +19,14 @@ end
 
 # Further Exploration
 
+def phone_format(str)
+  if str.length == 10
+    "#{str[0..2]}-#{str[3..5]}-#{str[6..-1]}"
+  else
+    str
+  end
+end
+
 def word_to_digit_with_squeeze(sentence)
   words = sentence.split
   prev_word = ''
@@ -30,11 +38,11 @@ def word_to_digit_with_squeeze(sentence)
       #binding.pry
       prev_word << DIGITS[word]
       if punctuation.length > 0
-        result << (prev_word + punctuation)
+        result << (phone_format(prev_word) + punctuation)
         prev_word = ''
       end
     else
-      result << prev_word if prev_word.length > 0
+      result << phone_format(prev_word) if prev_word.length > 0
       result << word
       prev_word = ''
     end
@@ -42,4 +50,4 @@ def word_to_digit_with_squeeze(sentence)
   result.join(' ')
 end
 
-p word_to_digit_with_squeeze('Please 3 4 call me at five five five one two three four. Thanks.') #== 'Please 3 4 call me at 5551234. Thanks.'
+p word_to_digit_with_squeeze('Please 3 4 call me at three two five five five five one two three four. Thanks.') #== 'Please 3 4 call me at 5551234. Thanks.'
