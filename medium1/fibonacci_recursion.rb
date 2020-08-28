@@ -1,9 +1,7 @@
 def fibonacci(nth)
-  return 1 if nth <= 2
-  # fibonacci(nth - 1) + fibonacci(nth - 2)
-  results = [1, 1]
-  (nth - 2).times { results << results[-1] + results[-2] }
-  results[-1]
+  first, last = [1, 1]
+  3.upto(nth) { first, last = [last, first + last] }
+  last
 end
 
 p fibonacci(1) == 1
