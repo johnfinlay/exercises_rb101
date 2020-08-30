@@ -1,7 +1,7 @@
 def triangle(angle1, angle2, angle3)
   angles = [angle1, angle2, angle3]
   case
-  when angles.include?(0) || angles.reduce(:+) != 180 then :invalid
+  when angles.include?(0), angles.reduce(:+) != 180 then :invalid
   when angles.include?(90) then :right
   when angles.count { |angle| angle > 90 } > 0 then :obtuse
   else :acute
