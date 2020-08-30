@@ -34,15 +34,16 @@
 
 def block_word?(word)
   arr = [
-    ['b', 'o'], ['x', 'k'], ['d', 'q'], ['c', 'p'], ['n', 'a'],
-    ['g', 't'], ['r', 'e'], ['f', 's'], ['j', 'w'], ['h', 'u'],
-    ['v', 'i'], ['l', 'y'], ['z', 'm']
+    ['B', 'O'], ['X', 'K'], ['D', 'Q'], ['C', 'P'], ['N', 'A'],
+    ['G', 'T'], ['R', 'E'], ['F', 'S'], ['J', 'W'], ['H', 'U'],
+    ['V', 'I'], ['L', 'Y'], ['Z', 'M']
   ]
   word.chars.each do |letter|
     return false if arr.empty?
+
     found = false
     arr.each_index do |index|
-      if arr[index].include?(letter.downcase)
+      if arr[index].include?(letter.upcase)
         arr.delete_at(index)
         found = true
         break
@@ -50,7 +51,7 @@ def block_word?(word)
     end
     return false unless found
   end
-  return true
+  true
 end
 
 p block_word?('BATCH') == true
