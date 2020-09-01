@@ -23,17 +23,16 @@
 =end
 
 def bubble_sort!(arr)
-  loop do
-    stop = true
-    arr.each_index do |index|
-      next if index >= arr.count - 1
-
-      if arr[index] > arr[index + 1]
-        stop = false
-        arr[index], arr[index + 1] = arr[index + 1], arr[index]
+  max = arr.count
+  until max <= 1
+    new_max = 0
+    1.upto(max - 1) do |index|
+      if arr[index - 1] > arr[index]
+        arr[index - 1], arr[index] = arr[index], arr[index - 1]
+        new_max = index
       end
     end
-    break if stop
+    max = new_max
   end
 end
 
