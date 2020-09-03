@@ -1,1 +1,4 @@
-"The adjective brown animal adverb verb the adjective yellow animal, who adverb verb his body_part and looks around."
+The %{adjective} brown %{noun} %{adverb}
+%{verb} the %{adjective} yellow
+%{noun}, who %{adverb} %{verb} his
+%{noun} and looks around.
