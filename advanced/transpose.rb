@@ -22,12 +22,11 @@
     5. Begin coding
 =end
 
-def transpose(arr)
-  result = [[0,0,0], [0,0,0], [0,0,0]]
-  arr.each_index do |outer_index|
-    arr[outer_index].each_index do |inner_index|
-      result[inner_index][outer_index] = arr[outer_index][inner_index]
-    end
+def transpose(matrix)
+  result = []
+  (0..2).each do |column_index|
+    new_row = (0..2).map { |row_index| matrix[row_index][column_index] }
+    result << new_row
   end
   result
 end
