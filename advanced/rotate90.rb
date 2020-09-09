@@ -3,9 +3,19 @@ require 'pry-byebug'
 
 def rotate90(matrix)
   result = []
+  
   (0..(matrix[0].count - 1)).each do |column_index|
     new_row = (matrix.count - 1).downto(0).map { |row_index| matrix[row_index][column_index] }
     result << new_row
+  end
+  result
+end
+
+def rotate90_plus(matrix, degrees)
+  result = matrix
+  counter = degrees / 90
+  counter.times do
+    result = rotate90(result)
   end
   result
 end
@@ -24,7 +34,10 @@ matrix2 = [
 new_matrix1 = rotate90(matrix1)
 new_matrix2 = rotate90(matrix2)
 new_matrix3 = rotate90(rotate90(rotate90(rotate90(matrix2))))
+new_matrix4 = rotate90(matrix1)
+new_matrix5 = rotate90_plus(new_matrix4, 270)
 
 p new_matrix1 == [[3, 4, 1], [9, 7, 5], [6, 2, 8]]
 p new_matrix2 == [[5, 3], [1, 7], [0, 4], [8, 2]]
 p new_matrix3 == matrix2
+p new_matrix5 == matrix1
