@@ -25,6 +25,8 @@ end
 def idf(term, documents)
   number_of_documents = documents.length.to_f
   number_of_documents_with_term = documents.count { |d| tf(term, d) > 0 }
+  return 0.0 if number_of_documents_with_term.zero?
+
   Math.log(number_of_documents / number_of_documents_with_term)
 end
 
@@ -47,7 +49,7 @@ document3 = "One of the core values that sets Launch School apart from some othe
 "Launch School is with an eye towards sustainable studying habits and building skills for a long-term career."
 
 documents = [document1, document2, document3]
-
+alt_docs = [document2, document3]
 # The higher the tf-idf score of a term for a document, the more informative
 # it is for that document.
 # E.g. when someone searches for the term 'cat' in your document collection,
@@ -70,3 +72,5 @@ puts tfidf("mastery", document3, documents) # ~ 3.3
 puts tfidf("some", document1, documents) # 0
 puts tfidf("some", document2, documents) # ~ 0.4
 puts tfidf("some", document3, documents) # ~ 0.4
+
+puts tfidf("quantum", document3, alt_docs) # 0
